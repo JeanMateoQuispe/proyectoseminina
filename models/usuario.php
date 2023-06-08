@@ -21,6 +21,21 @@ class Usuario extends Conexion{
     }
   }
   
+  public function listarUsuarios(){
+    try{
+      //Preparamos la consulta
+      $consulta = $this->acceso->prepare("CALL spu_listar_usuarios");
+      //Ejecutamos la consulta
+      $consulta->execute();
+
+      //Presentaremos los datos obtenidos como ARRAY asociativo
+      $tabla = $consulta->fetchAll(PDO::FETCH_ASSOC);
+      //Retornamos los datos obtenidos
+      return $tabla;
+    }catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
 }
 
 ?>

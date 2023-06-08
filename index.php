@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-//Si el usario ya tiene una sesión activa ... entonces no debe estar aqui!!!
 if(isset($_SESSION['seguridad'])){
   if($_SESSION['seguridad']['login']){
-    header('Location:views/matricula.php');
+    header('Location:./views/matriculas.php');
   }
 }
 ?>
@@ -45,29 +44,17 @@ if(isset($_SESSION['seguridad'])){
                 <img src="https://img.icons8.com/ultraviolet/40/null/password.png" alt="logo" style="height: 1rem;"/>
             </div>
             <input class="form-control bg-light" type="password" placeholder="Contraseña" id="password">
-        </div>
-
-        <div class="justify-content-around mt-1">
-            <div class="d-flex align-items-center gap-2 form-check form-switch">
-                <input class="form-check-input " type="checkbox" >
-                <div class="pt-1"style="font-size: 0.9rem;">Recordar mi cuenta</div>
-            </div>
-            <div class="pt-1">
-                <a href="#" class="text-decoration-none text-info fw-semibold fst-italic" style="font-size: 0.9rem;">¿Olvidaste tu contraseña?</a>
-            </div>
-        </div>
+        </div>        
             <div class="">
                 <button type="button" class="btn btn-success text-white w-100 mt-3" id="iniciar-sesion">Iniciar</button> 
-            <div>
-            </div>
-        </div> 
+            <div class="d-flex justify-content-center mt-1">       
+        </div>
+            
     </div>
   <!--jquery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-  <!-- Sweetalert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $(document).ready(function (){
 
