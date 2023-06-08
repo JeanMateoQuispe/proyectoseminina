@@ -1,14 +1,13 @@
 <?php
 session_start(); //apertura o tambien hereda el manejo de variables de sesión
 
-//Configuracion de la zona horaria
-//date_default_timezone_set('America/Lima');
+
 date_default_timezone_set('America/Lima');
 
 //invocando mi modelo
 require_once '../models/usuario.php';
 
-//$usuario = new Usuario();
+
 //si existe una operacion (inencion del usuario)
 if(isset($_GET['operacion'])){
 
@@ -19,16 +18,6 @@ if(isset($_GET['operacion'])){
     session_unset(); //libera recursos
     header('Location:../index.php');
     }
-  
-  //si la operacion es listar
-  if($_GET['operacion'] == 'listar'){
-    //Ejecutamos el metodo y guardamos el resultado
-    $datos = $usuario->listarUsuarios();
-
-    if($datos){
-      echo json_encode($datos);
-    }
-  }
   
 
   if($_GET['operacion'] =='iniciarSesion'){

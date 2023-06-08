@@ -9,7 +9,7 @@ if(isset($_SESSION['seguridad'])){
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,25 +58,15 @@ if(isset($_SESSION['seguridad'])){
         </div>
             <div class="">
                 <button type="button" class="btn btn-success text-white w-100 mt-3" id="iniciar-sesion">Iniciar</button> 
-            <div class="d-flex justify-content-center mt-1">
-                <div style="margin-right: 0.50rem;">No tengo una cuenta</div>
-                <a href="./views/registrarusuario.view.html" class="text-decoration-none text-info fw-semibold">Registrarse</a>
-            </div>
             <div>
-                <div class="p-3">
-                    <div class="border-bottom text-center" style="height: 0.9rem";>
-                        <span class="bg-light px-3">o</span>
-                    </div>
-                </div>
-                <div class="btn d-flex gap-2 justify-content-center border mt-2">
-                    <img src="assets/icons8-google.svg" alt="logo"  style="width: 1.6rem;">
-                    <div class="fw-semibold">Continuar con Google</div>
-                </div>
             </div>
         </div> 
     </div>
   <!--jquery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
     $(document).ready(function (){
@@ -89,16 +79,27 @@ if(isset($_SESSION['seguridad'])){
         };
 
         $.ajax({
-        url: './controllers/usuario.controller.php',
+        url: './controllers/usuario.php',
         type: 'GET',
         data: datos,
         dataType: 'JSON',
         success: function (result){
             if (result.login){
-            alert(`Bienvenido: ${result.nombres} ${result.apellidos} `);
-            window.location.href = `./views/matricula.php`;
+            Swal.fire({
+                title: "Bienvenido",
+                text: `${result.nombres} ${result.apellidos}`,
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+            })
+            .then((result) => {
+                window.location.href = `./views/matriculas.php`;
+            })
             }else{
-            alert(result.mensaje);
+            Swal.fire({
+                title: (result.mensaje),
+                icon: "error",
+            })
             }
         }
         });
